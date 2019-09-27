@@ -1,0 +1,13 @@
+x=sym('x');
+fun=x^3+2*x^2+10*x-20;
+[x_star,index,k]=Newton2(fun,1);
+digits(8);
+vpa(x_star)
+index
+k
+%{
+dfun=diff(fun,x,1)
+x1=1;
+fx1=subs(fun,x,x1)
+dfx1=subs(dfun,x,x1)
+%}
