@@ -1,4 +1,4 @@
-function [x_star,k]=bisect(fun,a,b)
+function [x_star,k]=bisect3(fun,a,b,ep)
 if nargin<4
     ep=1e-5;
 end
