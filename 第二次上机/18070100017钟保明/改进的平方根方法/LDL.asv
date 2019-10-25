@@ -1,0 +1,10 @@
+function [L,D]=LDL(A)
+n=length(A);
+L=zeros(n);
+D=zeros(n);
+d=zeros(1,n);
+T=zeros(n);
+for k=1:n
+    d(k)=A(k,k);
+    for j=1:k-1
+        d(k)=d(k)

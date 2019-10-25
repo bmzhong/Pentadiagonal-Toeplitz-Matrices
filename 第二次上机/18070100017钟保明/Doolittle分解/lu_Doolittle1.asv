@@ -1,0 +1,6 @@
+function [l,u]=lu_Doolittle1(A)
+n=length(A);
+u=zeros(n);
+l=eye(n);
+u(1:)=A(1:);
+l(2:n,1)=A()
