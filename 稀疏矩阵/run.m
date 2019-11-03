@@ -1,0 +1,25 @@
+clc;
+n=1000;a=1;b=1;c=1;d=2;e=1;f=1;g=1;
+det_T1=k_7sparseMatrix(n,a,b,c,d,e,f,g);
+disp(det_T1);
+det_T2=advance(n,a,b,c,d,e,f,g);
+disp(det_T2);
+det_T3=system_det(n,a,b,c,d,e,f,g);
+disp(det_T3);
+% Ê¾Àı¾ØÕó15*15
+% T=[a b c d 0 0 0 0 0 0 0 0 0 0 0;
+%    e a b c d 0 0 0 0 0 0 0 0 0 0;
+%    f e a b c d 0 0 0 0 0 0 0 0 0;
+%    g f e a b c d 0 0 0 0 0 0 0 0;
+%    0 g f e a b c d 0 0 0 0 0 0 0;
+%    0 0 g f e a b c d 0 0 0 0 0 0;
+%    0 0 0 g f e a b c d 0 0 0 0 0;
+%    0 0 0 0 g f e a b c d 0 0 0 0;
+%    0 0 0 0 0 g f e a b c d 0 0 0;
+%    0 0 0 0 0 0 g f e a b c d 0 0;
+%    0 0 0 0 0 0 0 g f e a b c d 0;
+%    0 0 0 0 0 0 0 0 g f e a b c d;
+%    0 0 0 0 0 0 0 0 0 g f e a b c;
+%    0 0 0 0 0 0 0 0 0 0 g f e a b;
+%    0 0 0 0 0 0 0 0 0 0 0 g f e a;
+%   ];
