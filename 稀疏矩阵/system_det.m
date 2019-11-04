@@ -1,25 +1,16 @@
-function det_T=system_det(n,a,b,c,d,e,f,g)
-T=zeros(n,n);
-for i=1:n
-    T(i,i)=a;
+function [det_T,time]=system_det(n,a,b,c,d,e,f,g)
+if nargin<8||n<4||d==0
+    error('输入参数不合法');
 end
-for i=1:n-1
-    T(i+1,i)=e;
-end
-for i=1:n-2
-    T(i+2,i)=f;
-end
-for i=1:n-3
-    T(i+3,i)=g;
-end
-for i=2:n
-    T(i-1,i)=b;
-end
-for i=3:n
-    T(i-2,i)=c;
-end
-for i=4:n
-    T(i-3,i)=d;
-end
-fprintf("(%d阶)系统det()函数的结果: ",n);
+d1=linspace(a,a,n);
+d2=linspace(b,b,n-1);
+d3=linspace(c,c,n-2);
+d4=linspace(d,d,n-3);
+d5=linspace(e,e,n-1);
+d6=linspace(f,f,n-2);
+d7=linspace(g,g,n-3);
+T=diag(d1,0)+diag(d2,1)+diag(d3,2)+diag(d4,3)+...
+  diag(d5,-1)+diag(d6,-2)+diag(d7,-3);
+tic
 det_T=det(T);
+time=toc;

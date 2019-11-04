@@ -1,0 +1,3 @@
+set(0,'diaryfile','result1.txt');
+set(0,'diaryfile','result2.txt');
+set(0,'diaryfile','result5.txt');
