@@ -1,3 +1,8 @@
 set(0,'diaryfile','result1.txt');
 set(0,'diaryfile','result2.txt');
 set(0,'diaryfile','result5.txt');
+3^3
+ans =
+    27.0000000000000e+000
+set(0,'diary','on');
+set(0,'diaryfile','result6.txt');
