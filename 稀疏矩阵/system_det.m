@@ -11,6 +11,8 @@ d6=linspace(f,f,n-2);
 d7=linspace(g,g,n-3);
 T=diag(d1,0)+diag(d2,1)+diag(d3,2)+diag(d4,3)+...
   diag(d5,-1)+diag(d6,-2)+diag(d7,-3);
+% disp('Ìõ¼şÊı');
+% disp(cond(T));
 tic
 det_T=det(T);
 time=toc;
