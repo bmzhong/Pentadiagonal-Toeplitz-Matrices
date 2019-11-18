@@ -1,4 +1,4 @@
-clc;
+% clc;
 N=[];
 time1=[];
 time2=[];
@@ -7,9 +7,10 @@ time4=[];
 rb=[];
 rc=[];
 rd=[];
-a=10;b=1;c=1;d=1;e=1;f=1;g=1;
+% a=1;b=0;c=0;d=1;e=0;f=0;g=0;
+a=0.5;b=1;c=1;d=1;e=1;f=1;g=1;
 n=1000;
-%  for n=21000:2000:23000
+%  for n=20000:2000:24000
 % while(n==1000||n==3000||n==6000||n==9000||n==24000)
     
     N=[N,n];
@@ -43,10 +44,10 @@ n=1000;
    
     
     average_time=0;
-    for i=1:100
+%     for i=1:100
         [k2,time]=k_2(n,a,b,c,d,e,f,g);
         average_time=average_time+time;
-    end
+%     end
     fprintf("(%d½×)k_2£º%13.12d\n",n,k2);
     fprintf('time£º%13.12d\n',average_time/100);
     fprintf('absolute error£º%13.12d\n',abs((k2-det)/det));
@@ -55,10 +56,10 @@ n=1000;
     fprintf('\n');
     
     average_time=0;
-    for i=1:100
+%     for i=1:100
         [k3,time]=k_3(n,a,b,c,d,e,f,g);
         average_time=average_time+time;
-    end
+%     end
     fprintf("(%d½×)k_3: %13.12d\n",n,k3);
     fprintf('time£º%13.12d\n',average_time/100);
     time4=[time4,average_time/100];
@@ -78,7 +79,7 @@ n=1000;
 %         n=n+2000;
 %     end
 % end
-figure(1)
- plot(N,time1,'-or',N,time2,'-sb',N,time3,'-dc',N,time4,'-hm');
-figure(2)
- plot(N,rb,'-*g',N,rc,'-sb',N,rd,'-dc');
+% figure(1)
+%  plot(N,time1,'-or',N,time2,'-sb',N,time3,'-dc',N,time4,'-hm');
+% figure(2)
+%  plot(N,rb,'-*g',N,rc,'-sb',N,rd,'-dc');
