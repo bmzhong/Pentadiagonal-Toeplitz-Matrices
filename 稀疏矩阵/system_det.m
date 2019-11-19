@@ -11,11 +11,13 @@ d6=linspace(f,f,n-2);
 d7=linspace(g,g,n-3);
 T=diag(d1,0)+diag(d2,1)+diag(d3,2)+diag(d4,3)+...
   diag(d5,-1)+diag(d6,-2)+diag(d7,-3);
-fprintf('条件数%d\n',condest(T));
+% fprintf('条件数%d\n',condest(T));
 % disp('条件数');
 % disp(cond(T));
 tic
-det_T=det(T);
+for i=1:100
+    det_T=det(T);
+end
 time=toc;
 
 % n=1000:49:2000
