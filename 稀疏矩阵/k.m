@@ -7,7 +7,7 @@ tic
 syms x dd;
 y=-1*x/dd;
 symvar(y);%函数返回的是符号函数中的自变量。
-fx=matlabFunction(y); %函数f的第一个参数为d,第二个参数为x。
+fx=matlabFunction(y); %函数f的第一个参数为dd,第二个参数为x。
 A=[ a b c;
     e a b;
     f e a;
