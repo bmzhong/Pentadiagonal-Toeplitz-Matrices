@@ -6,5 +6,11 @@ beta=nlinfit(x1,y1,f,beta0);
 syms x y;
 y=beta(1)+beta(2)*x^2;
 digits(4);
+fprintf('拟合后的结果为：f(x)=');
 disp(vpa(y));
-scatter
+figure(2);
+scatter(x1,y1);
+hold on;
+g=fplot(y,[-90 90]);
+set(g,'Color','r','LineWidth',1);
+
