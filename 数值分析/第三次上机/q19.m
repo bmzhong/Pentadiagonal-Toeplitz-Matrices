@@ -7,6 +7,7 @@ beta=nlinfit(x1,y1,f,beta0);
 syms x y;
 y=beta(1)*exp(beta(2)*x);
 digits(4);
+fprintf('拟合公式为：f(x)=');
 disp(vpa(y));
 figure(1);
 scatter(x1,y1);
