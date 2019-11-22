@@ -1,9 +1,33 @@
-x=[-1,-0.5,0,0.5,1];
-y=[-0.22,0.88,2.00,3.13,4.28];
+%第233页第18题，直接运行可得结果，包括函数结果和图像。
+x1=[-1,-0.5,0,0.5,1];
+y1=[-0.22,0.88,2.00,3.13,4.28];
 t=[1,1,1,1,1];
-T=[t;x];
+T=[t;x1];
 B=T*T';
-C=T*y';
+C=T*y1';
 A=inv(B)*C;
-syms x f(x)
-disp(A);
+syms x f(x);
+f(x)=A(1)*x+A(2);
+fprintf('一次代数多项式为：f(x)=');
+digits(4);
+disp(vpa(f(x)));
+a11=5; a12=sum(x1,2); a13=sum(x1.*x1,2);
+a23=sum(x1.*x1.*x1,2); a33=sum(x1.*x1.*x1.*x1,2);
+b11=sum(y1,2);b21=sum(x1.*y1,2);b31=sum(x1.*x1.*y1,2);
+M=[a11,a12,a13;a12,a13,a23;a13,a23,a33];
+N=[b11;b21;b31];
+L=inv(M)*N;
+syms x g(x);
+g(x)=L(1)+L(2)*x+L(3)*x^2;
+digits(4);
+fprintf('二次代数多项式为：g(x)=');
+disp(vpa(g(x)));
+%以下是图像部分。
+figure(1);
+scatter(x1,y1);
+hold on;
+f=ezplot(f(x));
+set(f,'Color','g','LineWidth',1);
+hold on;
+set(f,'Color','b','LineWidth',1);
+ezplot(g(x));
