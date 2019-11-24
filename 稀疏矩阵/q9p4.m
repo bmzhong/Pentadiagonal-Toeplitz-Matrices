@@ -1,13 +1,15 @@
-%233页第9题第3问。直接运行此脚本文件即可得到结果。
-syms x y
-y=cos(pi*x);
+%233页第9题第4小问。直接运行此脚本文件即可得到结果。
+a=1;b=2;
+syms x t y;
+x=(b-a)*t+a;
+y=log(x);
 f1=matlabFunction(y);
 d0=integral(f1,0,1);
-f2=@(x)f1(x).*x;
+f2=@(t)f1(t).*t;
 d1=integral(f2,0,1);
-f3=@(x)f1(x).*x.^2;
+f3=@(t)f1(t).*t.^2;
 d2=integral(f3,0,1);
-f4=@(x)f1(x).*x.^3;
+f4=@(t)f1(t).*t.^3;
 d3=integral(f4,0,1);
 H=[1,1/2,1/3,1/4;
   1/2,1/3,1/4,1/5;
