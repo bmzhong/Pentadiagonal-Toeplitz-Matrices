@@ -1,4 +1,5 @@
 %232页第4题。直接运行此脚本文件即可得到结果。
+clc;
 syms x y;
 y=sin(x);
 f=matlabFunction(y);
@@ -11,5 +12,5 @@ x2=A(1);
 a0=(f(a)+f(x2))/2-a1*(a+x2)/2;
 y=a1*x+a0;
 digits(4)
-fprintf('f(x)在[1,2]上的一次最佳一致逼近多项式为:  P(x)=');
+fprintf('f(x)=sinx在[1,2]上的一次最佳一致逼近多项式为:  P(x)=');
 disp(vpa(y));

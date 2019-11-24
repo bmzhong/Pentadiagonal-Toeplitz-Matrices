@@ -1,15 +1,11 @@
-%232页第3题第1小问。直接运行此脚本文件即可得到结果。
+%232页第12题。直接运行此脚本文件即可得到结果。
+clc;
 syms x y;
-y=1/x;
+y=log(x);
 f=matlabFunction(y);
 y1=diff(y);
 f1=matlabFunction(y1);
 a=1;  b=2;
-max=f(a);
-min=f(b);
-p0x=(max+min)/2;
-digits(4);
-fprintf('f(x)在[1,2]上的零次最佳一致逼近多项式为：P(x)=%4.3d\n',p0x);
 a1=(f(b)-f(a))/(b-a);
 A=solve(y1==a1);
 x2=A(1);
