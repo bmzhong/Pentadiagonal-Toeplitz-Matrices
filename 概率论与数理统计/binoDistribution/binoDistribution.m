@@ -1,9 +1,9 @@
 function f=binoDistribution(k,N,p,x)
-y1=binopdf(N,p);
+y1=binopdf(x,N,p);
 figure(k);
-plot(x,y1);
+scatter(x,y1,'o');
 hold on;
-y2=binocdf(N,p);
+y2=binocdf(x,N,p);
 figure(k+1);
-plot(x,y2);
+scatter(x,y2,'+');
 hold on;
