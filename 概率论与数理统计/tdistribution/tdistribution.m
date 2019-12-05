@@ -1,5 +1,4 @@
-function t=tdistribution(n,a,b,x) 
-clc;
+function t=tdistribution(n,a,b,x) %t分布
 y=tpdf(x-a,b); %1是中心，2 是自由度
 figure(n);
 plot(x,y)

@@ -1,4 +1,4 @@
-function f=Fdistribution(k,m,n,x)
+function f=Fdistribution(k,m,n,x)%F·Ö²¼
 y1=fpdf(x,m,n);
 figure(k);
 plot(x,y1);
