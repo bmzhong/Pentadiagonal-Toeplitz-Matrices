@@ -1,0 +1,24 @@
+clc;
+clear;
+n=300;
+a=0.5;b=1;c=1;d=1;e=1;f=1;g=1;
+% k1=floor(sqrt(3*(n-6)))-30;
+% k2=floor(sqrt(3*(n-6)))+30;
+% k3=floor(sqrt(3*(n-6)));
+k1=40;
+k2=40;
+k3=100;
+[det_T,time]=system_det(n,a,b,c,d,e,f,g);
+fprintf('(%d論)matlabㄩ%19.18d  time: %19.18d\n',n,det_T,time/50);
+
+t1=0;
+for i=1:50
+[det_T1,time1]=sparse1(n,k1,a,b,c,d,e,f,g);
+t1=time1
+fprintf('(%d論)k1ㄩ%19.18d  time: %19.18d\n',n,det_T1,time1/50);
+
+[det_T2,time2]=sparse3(n,k2,a,b,c,d,e,f,g);
+fprintf('(%d論)k2ㄩ%19.18d  time: %19.18d\n',n,det_T2,time2/50);
+
+[det_T3,time3]=sparse3(n,k3,a,b,c,d,e,f,g);
+fprintf('(%d論)k3ㄩ%19.18d  time: %19.18d\n',n,det_T3,time3/50);

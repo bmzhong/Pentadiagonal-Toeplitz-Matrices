@@ -15,5 +15,7 @@ T=diag(d1,0)+diag(d2,1)+diag(d3,2)+diag(d4,3)+...
 % disp('Ìõ¼şÊı');
 % disp(cond(T));
 tic
+for i=1:50
     det_T=det(T);
+end
 time=toc;

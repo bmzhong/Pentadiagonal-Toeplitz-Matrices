@@ -1,26 +1,34 @@
 clc;
 clear;
-a=0.5;b=1;c=1;d=1;e=1;f=1;g=1;n=10000;k=100;
-det_T=sparse1(n,k,a,b,c,d,e,f,g);
-det_T1=system_det(n,a,b,c,d,e,f,g);
-det_T2=k_1(n,a,b,c,d,e,f,g);
-det_T3=k_3(n,a,b,c,d,e,f,g);
-disp(det_T);
-disp(det_T1);
-disp(det_T2);
-disp(det_T3);
-% syms a11 a12 a13 a21 a22 a23 a31 a32 a33;
-% syms a41 a42 a43 a51 a52 a53 a61 a62 a63;
-% A=(879*a11)/1024 - (1059*a21)/1024 + (305*a31)/1024 + (365*a41)/512 - (75*a51)/256 + (65*a61)/512;
+n=20000;
+a=0.5;b=1;c=1;d=1;e=1;f=1;g=1;
+% k1=floor(sqrt(3*(n-6)))-100;
+k1=1;
+k2=floor(sqrt(3*(n-6)))+20;
+k3=floor(sqrt(3*(n-6)));
+% k1=120;
+% k2=200;
+%  k3=floor(sqrt(3*(n-6)));
+% [det_T,time]=system_det(n,a,b,c,d,e,f,g);
+% fprintf('(%d論)matlabㄩ%19.18d  time: %19.18d\n',n,det_T,time/50);
 
-% disp(A);
-% syms a11 a12 a13 a14 a22;
-% A=(879*a11)/1024+2312+a11.^2+a22;
-% f=coeffs(A,a22);
-% f1=symvar(A);
-% disp(f1);
-% disp(f);
-% AS=sparse2(1);
-% disp(AS);
-% str_var = 'varNumber';
-% eval( [str_var]);
+t1=0;
+for i=1:1000
+[det_T1,time1]=sparse3(n,k1,a,b,c,d,e,f,g);
+t1=time1+t1;
+end
+fprintf('(%d論)k1ㄩ%19.18d  time: %19.18d\n',n,det_T1,t1/1000);
+
+t2=0;
+for i=1:1000
+[det_T2,time2]=sparse3(n,k2,a,b,c,d,e,f,g);
+t2=time2+t2;
+end
+fprintf('(%d論)k2ㄩ%19.18d  time: %19.18d\n',n,det_T2,t2/1000);
+
+t3=0;
+for i=1:1000
+[det_T3,time3]=sparse3(n,k3,a,b,c,d,e,f,g);
+t3=time3+t3;
+end
+fprintf('(%d論)k3ㄩ%19.18d  time: %19.18d\n',n,det_T3,t3/1000);
