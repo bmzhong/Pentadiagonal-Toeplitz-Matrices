@@ -1,0 +1,10 @@
+f1=inline('sin(x)+exp(-x)');
+[x2,y2]=question9_1_2(f1,[0,1],0,0.1);
+f2=inline('x^2+100*y.^2');
+[x3,y3]=question9_1_3(f2,[0,1],0,0.1);
+fprintf("第9章第1题第2问的结果为: \n");
+fprintf("x2: %5.4d\n",x2);
+fprintf("y2:%5.4d\n",y2);
+fprintf("第9章第1题第3问的结果为: \n");
+fprintf("x3: %5.4d\n",x3);
+fprintf("y3:%5.4d\n",y3);

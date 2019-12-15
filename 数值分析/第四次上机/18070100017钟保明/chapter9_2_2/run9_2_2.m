@@ -1,0 +1,14 @@
+f=inline('x*y^2');
+[x1,y1]=euler1(f,[0,1],1,0.1);
+[x2,y2]=euler2(f,0,1,0.1,10);
+[x3,y3]=trap(f,0,1,0.1,10);
+fprintf("第9章第2题第2问结果：\n");
+fprintf("euler方法：\n");
+fprintf("x1: %5.4d\n",x1);
+fprintf("y1:%5.4d\n",y1);
+fprintf("改进的euler方法：\n");
+fprintf("x2: %5.4d\n",x2);
+fprintf("y2:%5.4d\n",y2);
+fprintf("梯形法：\n");
+fprintf("x3: %5.4d\n",x3);
+fprintf("y3:%5.4d\n",y3);

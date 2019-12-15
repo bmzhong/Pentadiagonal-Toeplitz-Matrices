@@ -1,0 +1,10 @@
+f=inline('x+y');
+[x1,y1]=euler(f,[0,1],1,0.1);
+[x2,y2]=adjust(f,[0,1],1,0.1);
+disp("第9章第6题的结果:\n");
+disp("euler方法:");
+fprintf("x1: %6.5d\n",x1);
+fprintf("y1:%6.5d\n",y1);
+disp("预估矫正法:\n");
+fprintf("x2: %6.5d\n",x2);
+fprintf("y2:%6.5d\n",y2);
