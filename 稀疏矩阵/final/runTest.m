@@ -1,6 +1,6 @@
 clc
 clear
-n=100;
+n=500;
  a=0.5;b=1;c=1;d=1;e=1;f=1;g=1;
  
 det1=sparse4(n,a,b,c,d,e,f,g);
