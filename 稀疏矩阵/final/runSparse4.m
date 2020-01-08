@@ -1,9 +1,10 @@
-clc
-n=100;
-a=1;b=1.119;c=1.01;d=1;e=1.17;f=0.95;g=0.1;
+
+% a=1;b=1.119;c=1.01;d=1;e=1.17;f=0.95;g=0.1;
+% a=1;b=0.01;c=0.015;d=1;e=0.01;f=0.02;g=0;
+ a=0.5;b=1;c=1;d=1;e=1;f=1;g=1;
 r1=[];r2=[];r3=[];
 t1=[];t2=[];t3=[];
-for n=24000:24000
+for n=6000:6000:6000
     tic
     for i=1:50
         det1=sparse4(n,a,b,c,d,e,f,g);
@@ -19,7 +20,11 @@ for n=24000:24000
     t2=[t2 time2/50];
     fprintf("matab：%15.12d, 时间：%15.12d\n",det2,time2/50);
     
-    [det3,time3]=Gauss_row(n,a,b,c,d,e,f,g);
+    tic
+    for i=1:50
+        det3=Gauss_row(n,a,b,c,d,e,f,g);
+    end
+    time3=toc;
     r3=[r3 det3];
     t3=[t3 time3/50];
     fprintf("高斯法：%15.12d, 时间：%15.12d\n\n\n",det3,time3/50);
