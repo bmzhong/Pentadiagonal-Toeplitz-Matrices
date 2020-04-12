@@ -31,7 +31,7 @@ while u~=0
         Y=Y*D;
     end
     d1=d1*d1;
-    D=D*D;
+    D=D*D; 
 end
 C=Y*A;
 E=[B,C];

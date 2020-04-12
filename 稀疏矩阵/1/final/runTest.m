@@ -4,9 +4,10 @@ clc
     % a=1;b=1.119;c=1.01;d=1;e=1.17;f=0.95;g=0.1;
     n=100;
     a=2;b=0.2;c=0.6;d=2;e=0.8;f=0.4;g=0.2;
+
     
     
-    det1=sparse4(n,a,b,c,d,e,f,g);
+    det1=finalAlgorithm(n,a,b,c,d,e,f,g,100);
     fprintf("Öµ£º%15.12d\n",det1);
     
     det2=syst(n,a,b,c,d,e,f,g);
