@@ -1,5 +1,5 @@
 clc;clear;
-n=2000;%矩阵维数
+n=1000;%矩阵维数
 k=n/2;   %  k>0
 %主对角线下方距离为k的元素构成的向量b1,长度为(n-k)
 b1=zeros(1,n-k);
@@ -61,7 +61,6 @@ g=F(:,n)';
 b=diag(F,0)';
 a=[0 diag(F,-1)'];
 c=[diag(F,1)' 0];
-
 t=zeros(1,n);u=zeros(1,n);l=zeros(1,n);s=zeros(1,n);r=zeros(1,n);
 t(2)=b(n-1);t(3)=b(n-1)*b(n-2)-a(n-1)*c(n-2);
 u(1)=a(n);
@@ -85,6 +84,8 @@ for i=3:n
         +(-1)^(i+1)*h(n+1-i)*l(i-1);
 end
 time1=toc;
-det(A);
-fprintf("MATLAB: %15.12d\n",);
-fprintf("PAPER:  %15.12d\n",f(n));
+tic
+mat=det(A);
+time2=toc;
+fprintf("PAPER:  %15.12d   time:  %15.12d\n",f(n),time1);
+fprintf("MATLAB: %15.12d   time： %15.12d\n",mat,time2);

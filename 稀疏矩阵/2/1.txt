@@ -1,0 +1,132 @@
+clc;clear;
+n=10000;%矩阵维数
+k=3;   %  k>0
+%主对角线下方距离为k的元素构成的向量b1,长度为(n-k)
+b1=zeros(1,n-k);
+for i=1:n-k
+    b1(i)=1;
+end
+%主对角线上方距离为k的元素构成的向量b2,长度为(n-k)
+b2=zeros(1,n-k);
+for i=1:n-k
+    b2(i)=1;
+end
+%最后一行元素,长度为n
+a1=zeros(1,n);
+for i=1:n-1
+    a1(i)=100;
+end
+%最后一列元素,长度为n
+a2=zeros(1,n);
+for i=1:n-1
+    a2(i)=22;
+end
+%主对角线上元素构成的向量d，长度为n
+d=zeros(1,n);
+for i=1:n
+    d(i)=1.5+(1/n)^2;
+end
+
+clc;clear;
+n=10;%矩阵维数
+k=3;   %  k>0
+%主对角线下方距离为k的元素构成的向量b1,长度为(n-k)
+b1=ones(1,n-k);
+%主对角线上方距离为k的元素构成的向量b2,长度为(n-k)
+b2=ones(1,n-k);
+%最后一行元素,长度为n
+a1=2*ones(1,n);
+%最后一列元素,长度为n
+a2=-2*ones(1,n);
+%主对角线上元素构成的向量d，长度为n
+d=(1.5+(k/n)^2)*ones(1,n);
+%构造A矩阵
+A=diag(d,0)+diag(b1,-k)+diag(b2,k);
+A(n,:)=a1;
+A(:,n)=a2;
+A(n,n)=d(n);
+
+
+
+clc;clear;
+n=99;%矩阵维数
+k=3;   %  k>0
+%主对角线下方距离为k的元素构成的向量b1,长度为(n-k)
+b1=-1*ones(1,n-k);
+%主对角线上方距离为k的元素构成的向量b2,长度为(n-k)
+b2=1.5*ones(1,n-k);
+for i=1:n-k
+    b2(i)=1/(2*i^12+2);
+end
+%最后一行元素,长度为n
+a1=2*ones(1,n);
+%最后一列元素,长度为n
+a2=20^n*ones(1,n);
+for i=1:n
+   a2(i)=10*i*n; 
+end
+%主对角线上元素构成的向量d，长度为n
+d=(1/(n))*ones(1,n);
+for i=1:n
+    if mod(i,3)==0
+        d(i)=0;
+    end
+end
+
+%构造A矩阵
+A=diag(d,0)+diag(b1,-k)+diag(b2,k);
+A(n,:)=a1;
+A(:,n)=a2;
+A(n,n)=d(n);
+A(n,n-k)=b1(n-k);
+A(n-k,n)=b2(n-k);
+%构造P矩阵
+P=zeros(n,n);
+m=1;
+for j=k:k:n-1
+    P(j,m)=1;
+    m=m+1;
+end
+for i=1:k-1
+    for j=i:k:n-1
+        P(j,m)=1;
+        m=m+1;
+    end
+end
+P(n,n)=1;
+tic
+%不完全块对角化
+F=P'*A*P;
+time1=toc;
+
+
+
+clc;
+clear all;
+n=1000;%矩阵维数
+k=3;   %  k>0
+%主对角线下方距离为k的元素构成的向量b1,长度为(n-k)
+b1=ones(1,n-k);
+% for i=1:n-k
+%     b1(i)=1;
+% end
+%主对角线上方距离为k的元素构成的向量b2,长度为(n-k)
+b2=ones(1,n-k);
+% for i=1:n-k
+%     b2(i)=1;
+% end
+%最后一行元素,长度为n
+a1=2*ones(1,n);
+% for i=1:n-1
+%     a1(i)=2;
+% end
+%最后一列元素,长度为n
+a2=-2*zeros(1,n);
+% for i=1:n-1
+%     a2(i)=-2;
+% end
+%主对角线上元素构成的向量d，长度为n
+d=ones(1,n);
+for i=1:n
+    d(i)=1.5+(k/n)^2;
+end

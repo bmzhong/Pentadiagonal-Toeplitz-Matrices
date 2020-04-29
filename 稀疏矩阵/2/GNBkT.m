@@ -1,60 +1,67 @@
 clc;clear;
-n=3000;%矩阵维数
-k=n/2;   %  k>0
+n=8;%矩阵维数
+k=3;   %  k>0
 %主对角线下方距离为k的元素构成的向量b1,长度为(n-k)
-b1=zeros(1,n-k);
-for i=1:n-k-1
-    b1(i)=2+(-1)^(i+1);
+b1=2*ones(1,n-k);
+for i=1:n-k
+    b1(i)=2+0.1*i;
 end
 %主对角线上方距离为k的元素构成的向量b2,长度为(n-k)
-b2=zeros(1,n-k);
-for i=1:n-k-1
-    b2(i)=1;
+b2=3*ones(1,n-k);
+for i=1:n-k
+    b2(i)=3+0.1*i;
 end
 %最后一行元素,长度为n
-a1=zeros(1,n);
-for i=1:n-1
-    a1(i)=((-1)^(i+1)+1)/2-1;
+a1=4*ones(1,n);
+for i=1:n
+    a1(i)=4+0.1*i;
 end
 %最后一列元素,长度为n
-a2=zeros(1,n);
-for i=1:n-1
-%     a2(i)=((-1)^(i+1)+1)/2;
-    a2(i)=2;
+a2=5*ones(1,n);
+for i=1:n
+    a2(i)=5+0.1*i;
 end
 %主对角线上元素构成的向量d，长度为n
-d=zeros(1,n);
+d=ones(1,n);
 for i=1:n
-    d(i)=-0.5;
+    d(i)=1+0.1*i;
 end
 %构造A矩阵
 A=diag(d,0)+diag(b1,-k)+diag(b2,k);
 A(n,:)=a1;
 A(:,n)=a2;
 A(n,n)=d(n);
-tic
+PA=A;
 %构造P矩阵
-P=[];
-for i=0 : k-1
-    class=[];
-    for j=1:n-1
-        if i==mod(j,k)
-            class=[class j];
-        end
-    end
-    class_size=size(class,2);
-    for j=1:class_size
-        e=zeros(1,n);
-        e(class(j))=1;
-        P=[P;e];
+P=zeros(n,n);
+m=1;
+for j=k:k:n-1
+    P(j,m)=1;
+    m=m+1;
+end
+for i=1:k-1
+    for j=i:k:n-1
+        P(j,m)=1;
+        m=m+1;
     end
 end
-e=zeros(1,n);
-e(n)=1;
-P=[P;e];
-P=P';
+P(n,n)=1;
 %不完全块对角化
 F=P'*A*P;
+PA=A;
+G=A;
+for k=1:(n-1)
+    G((k+1):n,(k+1):n)=G((k+1):n,(k+1):n)-G((k+1):n,k)/G(k,k)*G(k,(k+1):(n));
+    G((k+1):n,k)=zeros(n-k,1);
+end
+fprintf("PAPER:     行列式值 %15.12d\n",prod(diag(G)));
+
+tic
+mat=det(A);
+time1=toc;
+clear A;
+clear a1 a2 b1 b2 d P;
+tic
 %计算det(T)
 h=F(n,:);
 g=F(:,n)';
@@ -83,9 +90,9 @@ for i=3:n
     f(i)=b(n+1-i)*f(i-1)-s(i)*f(i-2)+(-1)^(i+1)*r(i-1)*g(n+1-i)...
         +(-1)^(i+1)*h(n+1-i)*l(i-1);
 end
-time1=toc;
-tic
-mat=det(A);
 time2=toc;
-fprintf("PAPER:  %15.12d   time:  %15.12d\n",f(n),time1);
-fprintf("MATLAB: %15.12d   time： %15.12d\n",mat,time2);
+fprintf("PAPER:     行列式值 %15.12d",f(n));
+fprintf("           计算时间:  %15.12d\n",time2);
+fprintf("MATLAB:    行列式值 %15.12d",mat);
+fprintf("           计算时间： %15.12d\n",time1);
+clear a b c g h F t u s l r f;
