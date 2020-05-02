@@ -1,0 +1,27 @@
+
+
+% clc
+% E0=111;
+% n=5;
+% T=14;
+% I0=111;
+% syms p1 p2 lamda1 lamda2 i U0 y f;
+% E=[E0];
+% for j=1:n
+%     y=(1-(1-p1)/T+lamda1-p1*i)^j*E0+(p2*u0)*( ( 1-(1-p1)/T+lamda1-p1*i)^j-(lamda2-p1+1)^j)/(-(1-p1)/T+lamda1-p1*i-lamda2+p1);
+%     E=[E y];
+% end
+% r=ones(1,n+1);
+% d=ones(1,n+1);
+% I=[I0];
+% for j=1:n
+%     y=I0+p1*i*sum(E(1:j))-sum( (r(1:j)+d(1:j)).*I(1:j) );
+%     I=[I y];
+% end
+% It=ones(1,n+1);
+% f=sum((I(1:n+1)-It(1:n+1)).^2);
+% g = matlabFunction(f);
+% disp(g)
+% x0=[0,0,0,0,0,0.1];
+% x=fminunc(g,x0)
+

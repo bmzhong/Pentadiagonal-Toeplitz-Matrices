@@ -1,37 +1,34 @@
 clc;clear;
-n=8;%矩阵维数
-k=3;   %  k>0
+n=1000;%矩阵维数
+k=n/2;   %  k>0
 %主对角线下方距离为k的元素构成的向量b1,长度为(n-k)
-b1=2*ones(1,n-k);
+b1=zeros(1,n-k);
 for i=1:n-k
-    b1(i)=2+0.1*i;
+    if mod(i,2)==0
+        b1(i)=0.1;
+    end
 end
+
 %主对角线上方距离为k的元素构成的向量b2,长度为(n-k)
-b2=3*ones(1,n-k);
+b2=zeros(1,n-k);
 for i=1:n-k
-    b2(i)=3+0.1*i;
+    if mod(i+1,2)==0
+        b2(i)=-0.1;
+    end
 end
 %最后一行元素,长度为n
-a1=4*ones(1,n);
-for i=1:n
-    a1(i)=4+0.1*i;
-end
+a1=2*ones(1,n);
 %最后一列元素,长度为n
-a2=5*ones(1,n);
-for i=1:n
-    a2(i)=5+0.1*i;
-end
+a2=2*ones(1,n);
 %主对角线上元素构成的向量d，长度为n
-d=ones(1,n);
-for i=1:n
-    d(i)=1+0.1*i;
-end
+d=0.5*ones(1,n);
+
 %构造A矩阵
 A=diag(d,0)+diag(b1,-k)+diag(b2,k);
 A(n,:)=a1;
 A(:,n)=a2;
 A(n,n)=d(n);
-PA=A;
+
 %构造P矩阵
 P=zeros(n,n);
 m=1;
@@ -48,17 +45,25 @@ end
 P(n,n)=1;
 %不完全块对角化
 F=P'*A*P;
-PA=A;
-G=A;
-for k=1:(n-1)
-    G((k+1):n,(k+1):n)=G((k+1):n,(k+1):n)-G((k+1):n,k)/G(k,k)*G(k,(k+1):(n));
-    G((k+1):n,k)=zeros(n-k,1);
-end
-fprintf("PAPER:     行列式值 %15.12d\n",prod(diag(G)));
 
+%MATLAB
 tic
-mat=det(A);
+res1=det(A);
 time1=toc;
+
+%Gauss Elimination
+tic
+for i=1:(n-1)
+    if i+k<n
+        A(i+k,(i+1):n)=A(i+k,(i+1):n)-A(i+k,i)/A(i,i)*A(i,(i+1):(n));
+        A(i+k,i)=0;
+    end
+    A(n,(i+1):n)=A(n,(i+1):n)-A(n,i)/A(i,i)*A(i,(i+1):(n));
+    A(n,i)=0;
+end
+time2=toc;
+res2=prod(diag(A));
+
 clear A;
 clear a1 a2 b1 b2 d P;
 tic
@@ -90,9 +95,13 @@ for i=3:n
     f(i)=b(n+1-i)*f(i-1)-s(i)*f(i-2)+(-1)^(i+1)*r(i-1)*g(n+1-i)...
         +(-1)^(i+1)*h(n+1-i)*l(i-1);
 end
-time2=toc;
-fprintf("PAPER:     行列式值 %15.12d",f(n));
-fprintf("           计算时间:  %15.12d\n",time2);
-fprintf("MATLAB:    行列式值 %15.12d",mat);
+time3=toc;
+res3=f(n);
+
+fprintf("MATLAB:    行列式值 %15.12d",res1);
 fprintf("           计算时间： %15.12d\n",time1);
+fprintf("Gauss:     行列式值 %15.12d",res2);
+fprintf("           计算时间:  %15.12d\n",time2);
+fprintf("PAPER:     行列式值 %15.12d",res3);
+fprintf("           计算时间:  %15.12d\n",time3);
 clear a b c g h F t u s l r f;
