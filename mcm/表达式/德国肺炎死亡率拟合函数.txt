@@ -1,0 +1,26 @@
+Fit computation did not converge:
+
+
+Fit found when optimization terminated:
+
+Linear model Poly9:
+     f(x) = p1*x^9 + p2*x^8 + p3*x^7 + p4*x^6 + 
+                    p5*x^5 + p6*x^4 + p7*x^3 + p8*x^2 + p9*x + p10
+Coefficients (with 95% confidence bounds):
+       p1 =   1.739e-16  (-1.153e-15, 1.5e-15)
+       p2 =  -4.654e-14  (-4.65e-13, 3.719e-13)
+       p3 =   5.039e-12  (-5.05e-11, 6.058e-11)
+       p4 =  -2.826e-10  (-4.312e-09, 3.747e-09)
+       p5 =   8.728e-09  (-1.652e-07, 1.826e-07)
+       p6 =  -1.478e-07  (-4.696e-06, 4.4e-06)
+       p7 =    1.39e-06  (-6.894e-05, 7.172e-05)
+       p8 =    -7.1e-06  (-0.0006052, 0.000591)
+       p9 =   1.785e-05  (-0.002384, 0.00242)
+       p10 =  -1.631e-05  (-0.003234, 0.003201)
+
+Goodness of fit:
+  SSE: 4.713e-05
+  R-square: 0.8267
+  Adjusted R-square: 0.8003
+  RMSE: 0.0008938
+
