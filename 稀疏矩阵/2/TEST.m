@@ -1,13 +1,13 @@
-clc;clear;
-n=10;
-a=ones(1,n-1);
-b=ones(1,n);
-c=-2*ones(1,n-1);
-A=diag(a,-1)+diag(b,0)+diag(c,1);
-A(n,1)=-2;
-A(1,n)=1;
-[L,U]=lu(A);
-L
-det(L)
-U
-det(A)
+% clc;clear;
+% n=10;
+% a=ones(1,n-1);
+% b=ones(1,n);
+% c=-2*ones(1,n-1);
+% A=diag(a,-1)+diag(b,0)+diag(c,1);
+% A(n,1)=-2;
+% A(1,n)=1;
+% [L,U]=lu(A);
+% L
+% det(L)
+% U
+% det(A)
